@@ -13,7 +13,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 #OSX flags
 macx {
  #-std=gnu0x
- QMAKE_CXXFLAGS += -mmacosx-version-min=10.7 -stdlib=libc++ -g -Wall
+ QMAKE_CXXFLAGS += -stdlib=libc++ -g -Wall
  QMAKE_CXXFLAGS += -DOSC_HOST_LITTLE_ENDIAN
 }
 
@@ -42,8 +42,8 @@ macx: TEMPLATE = app
 #OSX Include/Link
 macx{
  #Add the default include and lib directories (we assume boost and GRT are installed here)
- INCLUDEPATH += /usr/local/include
- LIBS += -L/usr/local/lib
+ INCLUDEPATH += /usr/local/include /opt/homebrew/include
+ LIBS += -L/usr/local/lib -L/opt/homebrew/lib
 
  #Add the base oscpack directory
  INCLUDEPATH += OSC/oscpack/include
