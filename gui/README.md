@@ -1,18 +1,25 @@
 ###Gesture Recognition Toolkit GUI
 
-####Building the GUI on OSX and Linux
+####Building the GUI on macOS (Apple Silicon & Intel) and Linux
 
-1. Download and install QtCreator: http://qt-project.org/
-2. Open Qt and try and build and run one of the examples to ensure it is installed correctly)
-3. Use the main GRT cmake file to build and install the GRT (you will find this in the build directory of the main project directory)
-4. Open the main GRT qt file (GRT.pro) using QtCreator (Qt: File -> Open File or Project)
-5. Select either the Debug or Release build (you might have to select 'Configure Project' the first time you open the project)
-6. Check the GRT.pro file to make sure all the default include and lib directories match those on your system
-7. Build the project
-8. If the build is successful, press Run to launch the GUI
-9. If you want to deploy the application on other machines, you should run the python script which will setup the application for deployment:
+1.  **Install Qt**:
+    *   **macOS (Homebrew)**: Run `brew install qt`. This will install the necessary Qt libraries and tools (including `qmake`). Note that installing `PyQt5` via pip is generally **not sufficient** as it may not provide the full C++ development environment.
+    *   **Linux/Other**: Download and install Qt via your package manager or from http://qt-project.org/.
+2.  Use the main GRT cmake file to build and install the GRT (you will find this in the build directory of the main project directory). Ensure the GRT library is installed where the build system can find it (e.g., `/usr/local/lib` or `/opt/homebrew/lib`).
+3.  **Building with Qt Creator**:
+    *   Open the main GRT qt file (GRT.pro) using QtCreator (Qt: File -> Open File or Project)
+    *   Select either the Debug or Release build (you might have to select 'Configure Project' the first time you open the project)
+    *   Check the GRT.pro file to make sure all the default include and lib directories match those on your system. Note: Apple Silicon paths (`/opt/homebrew`) are supported in the project file.
+    *   Build the project
+    *   If the build is successful, press Run to launch the GUI
+4.  **Building from Command Line**:
+    *   Navigate to the `gui/GRT` directory.
+    *   Run `qmake GRT.pro` (ensure `qmake` is in your PATH).
+    *   Run `make`
+    *   Run `./GRT.app/Contents/MacOS/GRT` (macOS) or `./GRT` (Linux).
+5.  If you want to deploy the application on other machines, you should run the python script which will setup the application for deployment:
 
-    python build-release_OSNAME.py
+    python build-release_osx.py /path/to/qt/bin/
 	
 	
 ####Building on Windows (Visual Studio 2012 Express)

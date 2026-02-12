@@ -44,7 +44,8 @@ if( os.path.exists( appDir + "Contents/Resources/qt.conf" ) == True ):
 	os.system( "rm " + appDir + "Contents/Resources/qt.conf" )
 	
 #Run qmake
-os.system( "qmake GRT/GRT.pro -config release -r -spec macx-clang CONFIG+=x86_64" )
+#Removed CONFIG+=x86_64 to support native Apple Silicon builds
+os.system( "qmake GRT/GRT.pro -config release -r -spec macx-clang" )
 	
 #Build the application
 print "Building application..."
@@ -52,7 +53,9 @@ os.system( "make -C " + mainDir + " clean " )
 os.system( "make -C " + mainDir )
 
 #Copy the GRT library into the GUI application for deployment
-os.system( "cp -fv " + "/usr/local/lib/" + "libgrt.dylib " + "/usr/lib/" )
+#NOTE: Copying to /usr/lib is restricted by SIP on modern macOS.
+#The GRT library should be picked up by macdeployqt if it is in the search path (e.g. /opt/homebrew/lib or /usr/local/lib)
+#os.system( "cp -fv " + "/usr/local/lib/" + "libgrt.dylib " + "/usr/lib/" )
 
 #Run the mac deploy tool so the application can be run on other machines
 print "Running mac deployment..."
