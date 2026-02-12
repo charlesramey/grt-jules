@@ -9,3 +9,14 @@ build/examples/*.csv
 build/examples/*.grt
 obj/
 libs/
+/build/examples
+/build/tmp
+gui/.qmake.stash
+/gui/GRT.app
+gui/Makefile
+gui/qrc_resource.cpp
+gui/ui_bargraph.h
+gui/ui_featureplot.h
+gui/ui_mainwindow.h
+gui/ui_timeseriesgraph.h
+gui/ui_versioninfo.h
